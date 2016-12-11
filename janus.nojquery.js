@@ -1252,7 +1252,13 @@ function Janus(gatewayCallbacks) {
                     getUserMedia({
                       "audio": true,
                       "video": {
-                        optional: [{sourceId: videoSourceId}]
+                            mandatory: {
+                                minWidth: 240, // Provide your own width, height and frame rate here
+                                minHeight: 300,
+                                minFrameRate: 30
+                            },
+                            facingMode: isFront?"front":"back",
+                            optional: [{sourceId: videoSourceId}]
                       }
                     }, function (stream) {
                       config.pc.removeStream(localstream)
@@ -1697,7 +1703,13 @@ function Janus(gatewayCallbacks) {
                     getUserMedia({
                       "audio": true,
                       "video": {
-                        optional: [{sourceId: videoSourceId}]
+                            mandatory: {
+                                minWidth: 240, // Provide your own width, height and frame rate here
+                                minHeight: 300,
+                                minFrameRate: 30
+                            },
+                            facingMode: isFront?"front":"back",
+                            optional: [{sourceId: videoSourceId}]
                       }
                     }, function (stream) {
                       streamsDone(handleId, jsep, media, callbacks, stream)
