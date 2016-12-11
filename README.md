@@ -10,3 +10,8 @@ Enter the same room ID(any word such as hello, yoyo, etc) in two or more devices
 
 ## NOTE
 - Don't run it on iOS simulator, or change to `navigator.getUserMedia({"audio": true, "video": false})` to test audio only.
+
+##Todo
+- deploy on android
+- hide localVideo (just don't display it)
+- make fullscreen of remote view https://github.com/oney/react-native-webrtc/issues/23
