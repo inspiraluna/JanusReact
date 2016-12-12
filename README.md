@@ -12,6 +12,16 @@ Enter the same room ID(any word such as hello, yoyo, etc) in two or more devices
 - Don't run it on iOS simulator, or change to `navigator.getUserMedia({"audio": true, "video": false})` to test audio only.
 
 ##Todo
-- deploy on android
+Second version Todos
+
+First version Todos
 - hide localVideo (just don't display it)
 - make fullscreen of remote view https://github.com/oney/react-native-webrtc/issues/23
+
+
+##
+Done:
+- deploy on android
+- bug in android Missing keys in getUserMedia 
+	https://github.com/oney/react-native-webrtc/issues/145
+	https://github.com/oney/react-native-webrtc/issues/157

@@ -28,7 +28,7 @@ var server = "wss://www.le-space.de/janus"; //JANUS
 //var server = "wss://localhost/janus"; //JANUS
 
 var janus = null;
-var echotest = null;
+var streaming = null;
 var started = false;
 
 var localstream_janus, remotestream_janus; 
@@ -53,36 +53,49 @@ var Janus = require('./janus.nojquery.js');
                     "stun:stun.voipbuster.com","stun:stun.voipstunt.com","stun:stun.voxgratia.org",
                     "stun:stun.services.mozilla.com"]},
                     {"urls":["turn:5.9.154.226:3478"],"username":"akashionata","credential":"silkroad2015"}],
-          
-                    camera_front: container.state.isFront,
-
                     success: function() {
                         janus.attach(
                             {
-                                plugin: "janus.plugin.echotest",
+                                plugin: "janus.plugin.streaming",
                                // plugin: "janus.plugin.videoroom",
                                 success: function(pluginHandle) {
-                                    echotest = pluginHandle;
-                                    Janus.log("Plugin attached! (" + echotest.getPlugin() + ", id=" + echotest.getId() + ")");
-                                    // Negotiate WebRTC
-                                    var body = { "audio": true, "video": true };
+                                    streaming = pluginHandle;
+                                    Janus.log("Plugin attached! (" + streaming.getPlugin() + ", id=" + streaming.getId() + ")");
+                                    
+                                    var body = { "request": "list" };
                                     Janus.debug("Sending message (" + JSON.stringify(body) + ")");
-                                    echotest.send({"message": body});
-                                    Janus.debug("Trying a createOffer too (audio/video sendrecv)");
-                                    echotest.createOffer(
-                                      {
-                                        // No media provided: by default, it's sendrecv for audio and video
-                                        media: { data: true },  // Let's negotiate data channels as well
-                                        success: function(jsep) {
-                                          Janus.debug("Got SDP!");
-                                          Janus.debug(jsep);
-                                          echotest.send({"message": body, "jsep": jsep});
-                                        },
-                                        error: function(error) {
-                                          Janus.error("WebRTC error:", error);
-                                          bootbox.alert("WebRTC error... " + JSON.stringify(error));
+                                    streaming.send({"message": body, success: function(result) {
+                                      setTimeout(function() {
+                                     //   $('#update-streams').removeClass('fa-spin').click(updateStreamsList);
+                                      }, 500);
+                                      if(result === null || result === undefined) {
+                                       // bootbox.alert("Got no response to our query for available streams");
+                                        return;
+                                      }
+                                      if(result["list"] !== undefined && result["list"] !== null) {
+                                       // $('#streams').removeClass('hide').show();
+                                       // $('#streamslist').empty();
+                                       // $('#watch').attr('disabled', true).unbind('click');
+                                        var list = result["list"];
+                                        Janus.log("Got a list of available streams");
+                                        Janus.debug(list);
+                                        for(var mp in list) {
+                                          Janus.debug("  >> [" + list[mp]["id"] + "] " + list[mp]["description"] + " (" + list[mp]["type"] + ")");
+                                         // $('#streamslist').append("<li><a href='#' id='" + list[mp]["id"] + "'>" + list[mp]["description"] + " (" + list[mp]["type"] + ")" + "</a></li>");
                                         }
-                                      });
+
+                                          var body = { "request": "watch", id: 2 };
+                                          streaming.send({"message": body});
+                                        //$('#streamslist a').unbind('click').click(function() {
+                                          //selectedStream = $(this).attr("id");
+                                         // $('#streamset').html($(this).html()).parent().removeClass('open');
+                                          //return false;
+
+                                        //});
+                                        //$('#watch').removeAttr('disabled').click(startStream);
+                                      }
+                                    }});
+                                    
                                 },
                                 error: function(error) {
                                     Janus.error("  -- Error attaching plugin...", error);
@@ -98,24 +111,52 @@ var Janus = require('./janus.nojquery.js');
                                     // $("#videolocal").parent().parent().unblock();
                                 },
                                 onmessage: function(msg, jsep) {
-                                  Janus.debug(" ::: Got a message :::");
-                                  Janus.debug(JSON.stringify(msg));
-                                  if(jsep !== undefined && jsep !== null) {
-                                    Janus.debug("Handling SDP as well...");
-                                    Janus.debug(jsep);
-                                    echotest.handleRemoteJsep({jsep: jsep});
-                                  }
-                                  var result = msg["result"];
-                                },
-                                onlocalstream: function(stream) {
-                                    Janus.debug("got local stream");
-                                   // this.setState({status: 'connect', info: 'got local stream'});
-                                    localstream_janus = stream;
-                                    container.setState({selfViewSrc: stream.toURL()});
+
+                                      Janus.debug(" ::: Got a message :::");
+                                      Janus.debug(JSON.stringify(msg));
+                                      var result = msg["result"];
+                                      if(result !== null && result !== undefined) {
+                                        if(result["status"] !== undefined && result["status"] !== null) {
+                                          var status = result["status"];
+                                          if(status === 'starting')
+                                              Janus.debug(" ::: starting :::");
+                                          //  $('#status').removeClass('hide').text("Starting, please wait...").show();
+                                          else if(status === 'started')
+                                              Janus.debug(" ::: started :::");
+                                          //  $('#status').removeClass('hide').text("Started").show();
+                                          else if(status === 'stopped')
+                                            stopStream();
+                                        }
+                                      } else if(msg["error"] !== undefined && msg["error"] !== null) {
+                                        bootbox.alert(msg["error"]);
+                                        stopStream();
+                                        return;
+                                      }
+                                      if(jsep !== undefined && jsep !== null) {
+                                        Janus.debug("Handling SDP as well...");
+                                        Janus.debug(jsep);
+                                        // Answer
+                                        streaming.createAnswer(
+                                          {
+                                            jsep: jsep,
+                                            media: { audioSend: false, videoSend: false },  // We want recvonly audio/video
+                                            success: function(jsep) {
+                                              Janus.debug("Got SDP!");
+                                              Janus.debug(jsep);
+                                              var body = { "request": "start" };
+                                              streaming.send({"message": body, "jsep": jsep});
+                                             // $('#watch').html("Stop").removeAttr('disabled').click(stopStream);
+                                            },
+                                            error: function(error) {
+                                              Janus.error("WebRTC error:", error);
+                                              bootbox.alert("WebRTC error... " + JSON.stringify(error));
+                                            }
+                                          });
+                                      }
+
                                 },
                                 onremotestream: function(stream) {
                                    Janus.debug("got remote stream");
-                                  //  this.setState({status: 'connect', info: 'Connected - got remote stream'});
                                    remotestream_janus = stream;
                                    container.setState({remoteViewSrc: stream.toURL()});
                                     // The publisher stream is sendonly, we don't expect anything here

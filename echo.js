@@ -154,10 +154,11 @@ const RCTWebRTCDemo = React.createClass({
   },
   componentDidMount: function() {
     container = this;
-        this.setState({status: 'connect', info: 'Connecting'});
-    janusStart();
+
   },
   _connectJanus(event) {
+    this.setState({status: 'connect', info: 'Connecting'});
+    janusStart();
 
   },
   render() {
