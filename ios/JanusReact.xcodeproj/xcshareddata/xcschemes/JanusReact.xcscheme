@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "RCTWebRTCDemo.app"
-               BlueprintName = "RCTWebRTCDemo"
-               ReferencedContainer = "container:RCTWebRTCDemo.xcodeproj">
+               BuildableName = "JanusReact.app"
+               BlueprintName = "JanusReact"
+               ReferencedContainer = "container:JanusReact.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "RCTWebRTCDemoTests.xctest"
-               BlueprintName = "RCTWebRTCDemoTests"
-               ReferencedContainer = "container:RCTWebRTCDemo.xcodeproj">
+               BuildableName = "JanusReactTests.xctest"
+               BlueprintName = "JanusReactTests"
+               ReferencedContainer = "container:JanusReact.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "RCTWebRTCDemoTests.xctest"
-               BlueprintName = "RCTWebRTCDemoTests"
-               ReferencedContainer = "container:RCTWebRTCDemo.xcodeproj">
+               BuildableName = "JanusReactTests.xctest"
+               BlueprintName = "JanusReactTests"
+               ReferencedContainer = "container:JanusReact.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "RCTWebRTCDemo.app"
-            BlueprintName = "RCTWebRTCDemo"
-            ReferencedContainer = "container:RCTWebRTCDemo.xcodeproj">
+            BuildableName = "JanusReact.app"
+            BlueprintName = "JanusReact"
+            ReferencedContainer = "container:JanusReact.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "RCTWebRTCDemo.app"
-            BlueprintName = "RCTWebRTCDemo"
-            ReferencedContainer = "container:RCTWebRTCDemo.xcodeproj">
+            BuildableName = "JanusReact.app"
+            BlueprintName = "JanusReact"
+            ReferencedContainer = "container:JanusReact.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -99,9 +99,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "RCTWebRTCDemo.app"
-            BlueprintName = "RCTWebRTCDemo"
-            ReferencedContainer = "container:RCTWebRTCDemo.xcodeproj">
+            BuildableName = "JanusReact.app"
+            BlueprintName = "JanusReact"
+            ReferencedContainer = "container:JanusReact.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

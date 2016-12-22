@@ -1,4 +1,4 @@
-package com.rctwebrtcdemo;
+package com.janusreact;
 
 import android.app.Application;
 import android.util.Log;

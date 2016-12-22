@@ -1,4 +1,4 @@
-rootProject.name = 'RCTWebRTCDemo'
+rootProject.name = 'JanusReact'
 
 include ':app'
 include ':WebRTCModule', ':app'
