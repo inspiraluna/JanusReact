@@ -6,9 +6,9 @@
 - For Android, run `react-native run-android` in the directory.  
 
 - first.js is doing the echo - touching the screen switches to second screen
-- second.js is doing streaming to a local file on janus-server -  
+- second.js is doing streaming to a local file on janus-server - change mount point in this file 
 
-1. first.js screen is doing 
+
 
 ##Todo
 - start gstreamer for delivering local rtpstream
