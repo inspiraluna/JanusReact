@@ -3,7 +3,7 @@ import { Text, Navigator, View, TouchableHighlight, AppRegistry, } from 'react-n
 
 import First from './first';
 import Second from './second';
-
+//AppRegistry.registerComponent('JanusReact', () => First);
 
 var Dimensions = require('Dimensions');
 let container;

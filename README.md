@@ -20,10 +20,11 @@
 		http://g33ktricks.blogspot.com.es/p/the-rtsp-real-time-streaming-protocol.html
 	- live555 rtsp-server/streamer	
 		http://www.live555.com/openRTSP/
-- (echo) make proper fullscreen of remote view https://github.com/oney/react-native-webrtc/issues/23
+
 
 
 ##Done:
+- 2016-12-28 (echo) make proper fullscreen of remote view https://github.com/oney/react-native-webrtc/issues/23
 - 2016-12-20 (main) write component which can show/hide two different components
 - 2016-12-21 (echo) hide localVideo (just don't display it)
 - (2h) implement streaming version 

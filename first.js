@@ -60,19 +60,16 @@ export default class First extends Component {
   render() {
 
      return (
-      <View style={styles.container}>
+      <View style={{flex:1}}>
+        <RTCView  
+          streamURL={this.state.remoteViewSrc}
 
-        <RTCView streamURL={this.state.remoteViewSrc} 
-            style={{width: (this.state.windowWidth), height: (this.state.windowHeight)}}
+          style={{ padding: 0, top: 0,  transform: [{scale: 1.41},]
+            , width: (this.state.windowWidth), height: (this.state.windowHeight) }}
+           
         />
         {
-       /*   
-      
-  
-      style="{styles.remoteView}"
-       mapHash(this.state.remoteList, function(remote, index) {
-            return <RTCView key={index} streamURL={remote} style={styles.remoteView}/>
-          })*/
+
         }
         
 
