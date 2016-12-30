@@ -21,8 +21,6 @@
 	- live555 rtsp-server/streamer	
 		http://www.live555.com/openRTSP/
 
-
-
 ##Done:
 - 2016-12-28 (echo) make proper fullscreen of remote view https://github.com/oney/react-native-webrtc/issues/23
 - 2016-12-20 (main) write component which can show/hide two different components
