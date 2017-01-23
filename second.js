@@ -23,8 +23,10 @@ import {
 var Dimensions = require('Dimensions');
 var window = Dimensions.get('window');
 
-var server = "wss://www.le-space.de/janus"; //JANUS
-var mountpoint = 2;
+var server = "http://35.167.53.111:8088/janus"; //JANUS
+
+//var server = "wss://www.le-space.de/janus"; //JANUS
+var mountpoint = 4;
 
 //import { JANUS } from 'react-native-dotenv'
 var janus = null;

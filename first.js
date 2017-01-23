@@ -24,7 +24,7 @@ import {
 var Dimensions = require('Dimensions');
 var window = Dimensions.get('window');
 
-
+//var server = "http://35.167.53.111:8088/janus";
 var server = "wss://www.le-space.de/janus"; //JANUS
 //var server = "wss://localhost/janus"; //JANUS
 
@@ -61,9 +61,8 @@ export default class First extends Component {
 
      return (
       <View style={{flex:1}}>
-        <RTCView  
-          streamURL={this.state.remoteViewSrc}
-
+       <RTCView  
+          streamURL={this.state.selfViewSrc}
           style={{ padding: 0, top: 0,  transform: [{scale: 1.41},]
             , width: (this.state.windowWidth), height: (this.state.windowHeight) }}
            
@@ -71,9 +70,6 @@ export default class First extends Component {
         {
 
         }
-        
-
-
       </View>
     );
   }
@@ -162,9 +158,9 @@ export default class First extends Component {
                                 },
                                 onlocalstream: function(stream) {
                                     Janus.debug("got local stream");
-                                   // this.setState({status: 'connect', info: 'got local stream'});
-                                   // localstream_janus = stream;
-                                   // container.setState({selfViewSrc: stream.toURL()});
+                                   container.setState({status: 'connect', info: 'got local stream'});
+                                   localstream_janus = stream;
+                                    container.setState({selfViewSrc: stream.toURL()});
                                 },
                                 onremotestream: function(stream) {
                                     var msg = "got remote stream";
