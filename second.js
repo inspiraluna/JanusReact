@@ -23,7 +23,8 @@ import {
 var Dimensions = require('Dimensions');
 var window = Dimensions.get('window');
 
-var server = "http://35.167.53.111:8088/janus"; //JANUS
+
+var server = "https://video1.onu.io:8090/janus";
 
 //var server = "wss://www.le-space.de/janus"; //JANUS
 var mountpoint = 4;
