@@ -22,6 +22,8 @@
 		http://www.live555.com/openRTSP/
 
 ##Done:
+- 2017-01-27 (main) corrected packages json
+- 2017-01-22 (main) replaced remote video on screen with remote video
 - 2016-12-28 (echo) make proper fullscreen of remote view https://github.com/oney/react-native-webrtc/issues/23
 - 2016-12-20 (main) write component which can show/hide two different components
 - 2016-12-21 (echo) hide localVideo (just don't display it)

@@ -80,10 +80,6 @@ export default class Second extends Component {
             </TouchableHighlight>
           </View>) : null
         }
-        <RTCView streamURL={this.state.selfViewSrc} style={styles.selfView}/>
-        {
-
-        }
         <RTCView streamURL={this.state.remoteViewSrc} style={styles.remoteView}/>
         {
        /*   mapHash(this.state.remoteList, function(remote, index) {
@@ -240,7 +236,8 @@ export default class Second extends Component {
                                    Janus.debug("got remote stream");
                                    containerStreaming.setState({status: 'streaming', info: 'Streaming'});
                                    remotestream_janus = stream;
-                                 //  containerStreaming.setState({remoteViewSrc: stream.toURL()});
+                                  //  container.setState({selfViewSrc: stream.toURL()});
+                                   containerStreaming.setState({remoteViewSrc: stream.toURL()});
                                     // The publisher stream is sendonly, we don't expect anything here
                                 },
                                 oncleanup: function() {
@@ -266,11 +263,12 @@ const styles = StyleSheet.create({
   selfView: {
     width: 200,
     height: 150,
+      backgroundColor:'red',
   },
   remoteView: {
     width: 200,
     height: 150,
-    top:200,
+    backgroundColor:'blue',
   },
   button: {
     width: 200,
